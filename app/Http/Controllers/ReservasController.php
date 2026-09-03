@@ -10,7 +10,7 @@ use Carbon\Carbon;
 
 
 
-class Reservas_Controller extends Controller
+class ReservasController extends Controller
 {
     public function index()
     {

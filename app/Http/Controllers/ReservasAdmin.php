@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Sala;
 use App\Models\ReservaAdmin;
 
-class ReservasAdmin_Controller extends Controller{
+class ReservasAdminController extends Controller{
 
 public function index()
 {

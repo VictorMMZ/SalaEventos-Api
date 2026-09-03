@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Reserva;
 use App\Models\ReservaAdmin;
 
-class Finances_Controller extends Controller
+class FinancesController extends Controller
 {
 
     public function index()
