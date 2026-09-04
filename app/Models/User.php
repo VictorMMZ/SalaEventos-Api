@@ -22,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'totp_enabled'
     ];
 
     /**
@@ -42,8 +43,8 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-           
             'password' => 'hashed',
+            'totp_enabled' => 'boolean',
         ];
     }
 }
