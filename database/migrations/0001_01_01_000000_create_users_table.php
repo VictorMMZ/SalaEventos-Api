@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('totp_secret')->nullable();
+            $table->boolean('totp_enabled')->default(false);
             $table->timestamps();
         });
 
