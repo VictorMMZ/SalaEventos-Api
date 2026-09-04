@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reservas_admin', function (Blueprint $table) {
+        Schema::create('reserva_admins', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->foreignId('reserva_id')
@@ -23,7 +23,7 @@ return new class extends Migration
             $table->decimal('sub_total', 8, 2);
             $table->decimal('iva', 8, 2);
             $table->decimal('total', 8, 2);
-            $table->decimal('comision', 8, 2);
+            $table->decimal('fianza', 8, 2);
             $table->enum('metodo_pago', [
                 'efectivo',
                 'tarjeta',
@@ -45,6 +45,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reservas_admin');
+        Schema::dropIfExists('reserva_admins');
     }
 };
