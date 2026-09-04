@@ -19,7 +19,7 @@ return new class extends Migration
                  -> restrictedOnDelete();
             $table->string('nombre_completo');
             $table->string('email');
-            $table->integer('telefono',9);
+            $table->string('telefono', 9);
             $table->date('fecha_evento');
             $table->time('hora_entrada');
             $table->time('hora_salida');
