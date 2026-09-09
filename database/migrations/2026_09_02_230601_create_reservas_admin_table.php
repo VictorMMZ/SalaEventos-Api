@@ -20,17 +20,16 @@ return new class extends Migration
                 ->restrictedOnDelete();
             $table->decimal('precio', 8, 2);
             $table->decimal('descuento', 8, 2);
-            $table->decimal('sub_total', 8, 2);
-            $table->decimal('iva', 8, 2);
             $table->decimal('total', 8, 2);
             $table->decimal('fianza', 8, 2);
             $table->enum('metodo_pago', [
+                'a definir',
                 'efectivo',
                 'tarjeta',
                 'transferencia',
                 'bizum',
                 'paypal'
-            ]);
+            ])->default('a definir');
             $table->enum('estado', [
                 'pendiente',
                 'confirmada',
