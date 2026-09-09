@@ -2,15 +2,15 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
+use App\Models\Reserva;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 /**
- * @extends Factory<User>
+ * @extends Factory<Reserva>
  */
-class UserFactory extends Factory
+class ReservaFactory extends Factory
 {
     /**
      * The current password being used by the factory.
@@ -25,12 +25,15 @@ class UserFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
-            'totp_enabled' => false,
-            'totp_secret' => null,
-            'password' => static::$password ??= Hash::make('password'),
-            
+            'sala_id' => \App\Models\Sala::factory(),
+            'nombre_completo' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'telefono' => $this->faker->numerify('#########'),
+            'fecha_evento' => "2026-09-01",
+            'hora_entrada' => "16:00",
+            'hora_salida' => "19:00",
+            'numero_ninos' => $this->faker->numberBetween(0, 40),
+            'mensaje_adicional' => "mensaje",
         ];
     }
 
