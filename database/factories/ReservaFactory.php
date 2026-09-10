@@ -29,7 +29,7 @@ class ReservaFactory extends Factory
             'nombre_completo' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'telefono' => $this->faker->numerify('#########'),
-            'fecha_evento' => "2026-09-01",
+            'fecha_evento' => "2026-09-29",
             'hora_entrada' => "16:00",
             'hora_salida' => "19:00",
             'numero_ninos' => $this->faker->numberBetween(0, 40),
