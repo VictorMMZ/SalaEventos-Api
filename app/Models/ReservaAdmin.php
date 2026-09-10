@@ -20,5 +20,6 @@ class ReservaAdmin extends Model
         'fianza',
         'metodo_pago',
         'estado',
+        'total',
     ];
 }

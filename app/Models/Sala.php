@@ -14,10 +14,6 @@ class Sala extends Model
         return $this->hasMany(Reserva::class);
     }
 
-    public function reservaAdmin()
-{
-    return $this->hasOne(ReservaAdmin::class);
-}
 
     protected $fillable = [
         'nombre',
