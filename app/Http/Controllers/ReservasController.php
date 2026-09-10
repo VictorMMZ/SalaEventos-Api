@@ -72,7 +72,7 @@ class ReservasController extends Controller
             'sala_id' => 'required|exists:salas,id',
             'nombre_completo' => 'required|string|max:255',
             'email' => 'required|email|max:255',
-            'telefono' => 'required|numeric|digits:9',
+            'telefono' => 'required|digits:9',
             'fecha_evento' => 'required|date',
             'hora_entrada' => 'required|date_format:H:i|max:10',
             'hora_salida' => 'required|date_format:H:i|max:10',
@@ -98,7 +98,14 @@ class ReservasController extends Controller
                 ]
             ], 422);
         }
-
+        // Comprobamos que la fecha del evento no sea en el pasado
+        if ($validated['fecha_evento'] < date('Y-m-d')) {
+            return response()->json([
+                'errors' => [
+                    'fecha_evento' => 'La fecha del evento no puede ser en el pasado.'
+                ]
+            ], 422);
+        }
         // Comprobamos si hay conflictos de horario
         if ($this->existeConflicto(
             $validated['sala_id'],
@@ -108,6 +115,8 @@ class ReservasController extends Controller
         )) {
             return response()->json(['message' => 'Fecha y hora no disponibles'], 409);
         }
+
+
 
         // Calculamos las horas de la reserva
         $horas = $entrada->diffInHours($salida);
@@ -125,11 +134,9 @@ class ReservasController extends Controller
         // Creamos automáticamente ReservaAdmin
         ReservaAdmin::create([
             'reserva_id' => $reserva->id,
-            'precio' => $sala->precio,
+            'precio' => $sala->precio*$horas,
             'descuento' => $descuento,
             'fianza' => $fianza,
-            'metodo_pago' => 'pendiente',
-            'estado' => 'pendiente',
             'total' => $total,
         ]);
         return response()->json([
