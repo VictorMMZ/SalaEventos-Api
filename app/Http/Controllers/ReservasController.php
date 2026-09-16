@@ -129,12 +129,12 @@ class ReservasController extends Controller
         $fianza = 0;
 
         //  Calculamos el total
-        $total = ($sala->precio * $horas) - $descuento;
+        $total = ($sala->precio_hora * $horas) - $descuento ;
 
         // Creamos automáticamente ReservaAdmin
         ReservaAdmin::create([
             'reserva_id' => $reserva->id,
-            'precio' => $sala->precio*$horas,
+            'precio' => $sala->precio_hora*$horas,
             'descuento' => $descuento,
             'fianza' => $fianza,
             'total' => $total,
