@@ -58,6 +58,7 @@ public function update($id, Request $request)
             'fianza' => 'sometimes|numeric|min:0',
             'metodo_pago' => 'sometimes|string|max:255',
             'estado' => 'sometimes|string|max:255',
+            'total' => 'sometimes|numeric|min:0'
         ]);
         
         $reserva_admin->update($validated);
@@ -76,6 +77,22 @@ public function getReservasByNombre($nombre)
         ->get();
     return response()->json($reservas_admin);
 }
+
+
+public function updateReservaEstado($id, Request $request)
+{
+    $reserva_admin = ReservaAdmin::find($id);
+    if ($reserva_admin) {
+        $validated = $request->validate([
+            'estado' => 'required|string|max:255',
+        ]);
+        $reserva_admin->update($validated);
+        return response()->json(['message' => 'Estado de la reserva actualizado exitosamente', 'reserva' => $reserva_admin]);
+    } else {
+        return response()->json(['message' => 'Reserva no encontrada'], 404);
+    }
+}
  
 }
+
 
